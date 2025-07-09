@@ -217,9 +217,11 @@ body {
 }
 
 .city:hover .overlay,
-.city:overlay-active .overlay, {
+.city.overlay-active .overlay {
   opacity: 1;
+  pointer-events: auto;
 }
+
 
 .about {
   padding: 4rem 2rem;
