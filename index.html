@@ -1062,19 +1062,29 @@
     &copy; 2025 TNA Entertainment
   </footer>
   
-  <script>
-    // Wait for the DOM
-    document.addEventListener('DOMContentLoaded', () => {
-      // For each gallery item
-      document.querySelectorAll('.city').forEach(item => {
-        // Toggle overlay on touch/click
-        item.addEventListener('click', () => {
-          // Toggle a class that shows overlay
-          item.classList.toggle('overlay-active');
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.city').forEach(item => {
+      item.addEventListener('click', () => {
+        // Remove active class from others
+        document.querySelectorAll('.city').forEach(el => {
+          if (el !== item) el.classList.remove('overlay-active');
         });
+
+        // Toggle on the one tapped
+        item.classList.toggle('overlay-active');
       });
     });
-  </script>
+
+    // Optional: tap anywhere else to close all overlays
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.city')) {
+        document.querySelectorAll('.city').forEach(el => el.classList.remove('overlay-active'));
+      }
+    });
+  });
+</script>
+
 
 </body>
 </html>
