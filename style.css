@@ -216,7 +216,8 @@ body {
   font-size: 1.5rem;
 }
 
-.city:hover .overlay {
+.city:hover .overlay,
+.city:overlay-active .overlay, {
   opacity: 1;
 }
 
