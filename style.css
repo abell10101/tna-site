@@ -1,0 +1,262 @@
+/* styles.css */
+:root {
+  --color-bg: #000;
+  --color-text: #fff;
+  --space: 1rem;
+  --color-primary: #ff1a1a;
+  --color-accent: #b30000;
+  --color-text-light: #ffffff;
+  --color-text-muted: #cccccc;
+  --color-overlay: rgba(0, 0, 0, 0.6);
+
+  --font-main: 'Orbitron',;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 2rem;
+
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --radius: 8px;
+
+  --glow-soft: 0 0 8px var(--color-primary);
+  --glow-strong: 0 0 16px var(--color-primary);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.header {
+  background: var(--color-bg);
+  color: var(--color-primary);
+  text-align: center;
+  padding: var(--spacing-sm);
+  font-family: var(--font-main);
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 2px solid var(--color-primary);
+  box-shadow: 0 0 10px var(--color-primary);
+  position: relative;
+  z-index: 10;
+}
+
+.header-red {
+  color: var(--color-primary); /* red */
+  font-weight: 900;
+}
+
+.header-white {
+  color: var(--color-text-light); /* white */
+  font-weight: 600;
+}
+
+
+.hero {
+  position: relative;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, #111 0%, #000 100%);
+  overflow: hidden;
+  animation: fadeInBg 1s ease-in-out forwards;
+}
+
+/* Make the logo pop even more */
+.hero-logo {
+  width: clamp(200px, 30vw, 500px);
+  filter:
+    drop-shadow(0 0 30px #e50914cc)
+    drop-shadow(0 0 40px #ff1a1aff);
+  opacity: 0;
+  animation: fadeInLogo 1s ease-out forwards 1s;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Add animated glowing neon lines behind the logo */
+.hero::before, .hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.6;
+  animation: pulseGlow 2s infinite alternate;
+}
+
+.hero::before {
+  width: 175px;
+  height: 175px;
+  background: #e50914;
+  top: 30%;
+  left: 30%;
+  animation-delay: 0s;
+}
+
+.hero::after {
+  width: 400px;
+  height: 400px;
+  background: #ff1a1a;
+  top: 40%;
+  left: 55%;
+  animation-delay: 1.5s;
+  opacity: 0.5;
+}
+
+
+
+@keyframes fadeInLogo {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInBg {
+  0% {
+    background: #000;
+  }
+  100% {
+    background: radial-gradient(circle at center, #111 0%, #000 100%);
+  }
+}
+
+@keyframes subtlePulse {
+  0% {
+    box-shadow: var(--glow-soft);
+  }
+  100% {
+    box-shadow: var(--glow-strong);
+  }
+}
+
+/* Glow pulsing effect */
+@keyframes pulseGlow {
+  from {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+.cities {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 2rem;
+  background: #111;
+}
+
+@media (max-width: 768px) {
+  .cities {
+    grid-template-columns: 1fr;
+  }
+}
+
+.city {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  animation: fadeInCity 1s ease forwards;
+}
+
+@keyframes fadeInCity {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.city:hover {
+  transform: scale(1.02);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+  color: white;
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+}
+
+.city:hover .overlay {
+  opacity: 1;
+}
+
+.about {
+  padding: 4rem 2rem;
+  background: var(--color-bg);
+  border: none;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  animation: fadeInCity 1.5s ease forwards;
+}
+
+.about h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+.cta {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: #111;
+  font-size: 1.2rem;
+  animation: fadeInCity 1.5s ease forwards;
+}
+
+.cta a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--color-bg);
+  color: #666;
+  font-size: 0.9rem;
+  animation: fadeInCity 1.5s ease forwards;
+}
+
