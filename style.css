@@ -263,3 +263,62 @@ body {
   animation: fadeInCity 1.5s ease forwards;
 }
 
+/* Intro overlay container */
+.intro-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: black;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Red glowing line in center */
+.intro-line {
+  width: 0%;
+  height: 4px;
+  background: var(--color-primary);
+  box-shadow: 0 0 20px var(--color-primary);
+  animation: drawLine 1.2s forwards ease-out;
+}
+
+.intro-header {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: white;
+  margin-top: 1.5rem;
+  opacity: 0;
+  animation: fadeInHeader 1s 1.3s forwards;
+}
+
+/* Hide main content until animation ends */
+.hidden {
+  visibility: hidden;
+}
+
+/* Animation keyframes */
+@keyframes drawLine {
+  0% { width: 0%; }
+  100% { width: 60%; }
+}
+
+@keyframes fadeInHeader {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Split the line and reveal content */
+@keyframes splitLine {
+  0% { transform: scaleX(1) translateY(0); opacity: 1; }
+  50% { transform: scaleX(1.05); }
+  100% {
+    transform: scaleX(1) translateY(-300px);
+    opacity: 0;
+  }
+}
