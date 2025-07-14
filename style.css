@@ -38,6 +38,8 @@ body {
 }
 
 .header {
+  position: sticky;
+  top: 0;
   background: var(--color-bg);
   color: var(--color-primary);
   text-align: center;
@@ -49,7 +51,6 @@ body {
   letter-spacing: 2px;
   border-bottom: 2px solid var(--color-primary);
   box-shadow: 0 0 10px var(--color-primary);
-  position: relative;
   z-index: 10;
 }
 
@@ -261,6 +262,16 @@ body {
   color: #666;
   font-size: 0.9rem;
   animation: fadeInCity 1.5s ease forwards;
+}
+
+.footer::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: var(--color-primary);
+  box-shadow: 0 0 20px var(--color-primary);
+  margin-bottom: 1rem;
 }
 
 /* Intro overlay container */
